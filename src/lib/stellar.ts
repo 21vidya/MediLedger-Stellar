@@ -94,29 +94,36 @@ export const StellarService = {
   },
 
   /**
-   * Records a medical record hash on the Soroban ledger
+   * Anchors a new health record to the Soroban ledger
    */
-  anchorRecordHash: async (patientAddr: string, ipfsHash: string, dataHash: string) => {
-    // Mapping to Soroban ScVal types usually happens here
-    // For this simulation, we describe the intended contract arguments:
-    // [Address(patientAddr), String(ipfsHash), Bytes(dataHash)]
-    console.log(`[Soroban] Invoking anchor_record_hash for patient: ${patientAddr}`);
-    return await StellarService.invokeContract('anchor_record_hash', [
-      new Address(patientAddr),
-      ipfsHash,
-      dataHash
+  anchorRecord: async (hospitalAddr: string, patientAddr: string, recordId: string, recordHash: string, encryptedUri: string) => {
+    console.log(`[Soroban] Invoking anchor_record for record: ${recordId}`);
+    return await StellarService.invokeContract('anchor_record', [
+      new Address(hospitalAddr),
+      {
+        id: recordId,
+        patient_address: new Address(patientAddr),
+        hospital_address: new Address(hospitalAddr),
+        record_hash: recordHash,
+        encrypted_uri: encryptedUri,
+        timestamp: Math.floor(Date.now() / 1000)
+      }
     ]);
   },
 
   /**
    * Manages access control via the smart contract
    */
-  grantAccess: async (doctorAddr: string, category: string, expiry: number) => {
-    console.log(`[Soroban] Invoking grant_access for doctor: ${doctorAddr}`);
-    return await StellarService.invokeContract('grant_access', [
-      new Address(doctorAddr),
-      category,
-      expiry
+  updatePermission: async (patientAddr: string, doctorAddr: string, granted: boolean, expiresAt: number) => {
+    console.log(`[Soroban] Invoking update_permission for doctor: ${doctorAddr}`);
+    return await StellarService.invokeContract('update_permission', [
+      new Address(patientAddr),
+      {
+        patient_address: new Address(patientAddr),
+        app_address: new Address(doctorAddr),
+        granted: granted,
+        expires_at: expiresAt
+      }
     ]);
   }
 };

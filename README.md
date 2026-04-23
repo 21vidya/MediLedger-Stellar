@@ -1,26 +1,60 @@
 # MediLedger: Stellar-Powered Bio-Data Vault 🏥 🔒
 
 ### Decentralized Medical Record Management & Verification System
+
+[![Stellar](https://img.shields.io/badge/Stellar-High-blue?logo=stellar&logoColor=white)](https://stellar.org)
+[![Soroban](https://img.shields.io/badge/Soroban-Smart_Contracts-purple)](https://soroban.stellar.org)
+[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+
 ---
 
 ## 🎓 Overview
-**MediLedger** is a secure, patient-centric ecosystem designed to solve the challenges of fragmented healthcare data. By leveraging the **Stellar Blockchain**, it ensures that medical records are immutable, easily verifiable, and strictly controlled by the patient. 
+**MediLedger** is a high-security, patient-centric ecosystem designed to solve the challenges of fragmented healthcare data. By leveraging the **Stellar Blockchain** and **Soroban Smart Contracts**, it ensures that medical records are immutable, easily verifiable, and strictly controlled by the patient. 
 
-### Secure Bio-Data Vault
-* **Institution Portal**: Hospitals can securely submit patient records (EHR/Lab results).
-* **Patient Sovereignty**: Patients manage their data permissions and privacy via a personalized dashboard.
-* **Doctor Surveillants**: Physicians access real-time, authorized data for informed clinical decisions.
-* **Verification Logic**: Instant verification of record integrity using on-chain hashes.
+### 🔄 System Data Flow
+```mermaid
+graph TD
+    H[Hospital] -- 1. Encrypt & Hash --> P[Patient Data]
+    P -- 2. Anchor Hash --> S(Stellar Blockchain)
+    P -- 3. Store Payload --> D(Simulation Store)
+    U[Patient] -- 4. Grant Access --> S
+    Dr[Doctor] -- 5. Verify Hash --> S
+    S -- 6. Authorization OK --> Dr
+    D -- 7. Fetch Encrypted Data --> Dr
+```
+
+### 📋 System Details
+| Category | Details |
+| --- | --- |
+| **System Name** | MediLedger: Decentralized Health Vault |
+| **Blockchain** | Stellar (Soroban Smart Contracts) |
+| **Network** | Futurenet / Testnet Simulation |
+| **Primary Goal** | Patient Sovereignty & Data Integrity |
 
 ---
 
 ## 🏗️ Architecture
+
 ### Technology Stack
-* **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion (Animations).
-* **Backend API**: Express.js, TypeScript, Node.js.
-* **Blockchain**: Stellar SDK (Soroban Simulation for Ledger Anchoring).
-* **Storage**: Encrypted IPFS-style decentralized storage simulation.
-* **Security**: AES-256 Record Encryption & RSA-based Key Exchange simulation.
+
+#### 🌐 Frontend Service
+* **React.js**: Single Page Application (SPA) framework for the user interface.
+* **Tailwind CSS**: Utility-first CSS framework for custom, responsive design.
+* **Framer Motion**: Production-ready motion library for animations.
+* **Stellar SDK**: Client-side interaction with the Stellar Network and Wallets.
+
+#### 🖥️ Backend Service
+* **Node.js**: JavaScript runtime for building the scalable backend.
+* **Express.js**: Web framework for building the REST API.
+* **In-Memory Store**: Stateful prototype storage for rapid development.
+* **TypeScript**: Type-safe development for robust backend logic.
+
+#### ⛓️ Blockchain Service
+* **Soroban SDK**: Smart contract development and anchored anchoring.
+* **Stellar Horizon**: API for querying ledger state and transaction history.
+* **Freighter API**: Secure browser-based signing for patient transactions.
 
 ### System Components
 1. **Clinical Submitter**: Validates and encrypts raw medical data before ledger anchoring.
@@ -30,39 +64,55 @@
 ---
 
 ## 📁 Project Structure
+The repository is organized to separate concerns between medical data handling, blockchain anchoring, and role-based UI presentation.
+
 ```text
 ├── src/
-│   ├── components/       # Reusable UI Blocks (VaultCards, LedgerTable)
-│   ├── pages/            # Role-Based Dashboards (Patient, Doctor, Hospital)
-│   ├── services/         # Stellar SDK & Encryption Logic
-│   ├── lib/              # Theme & Layout configuration
-│   └── types.ts          # Global Medical Entity Definitions
-├── server.ts             # Express Secure API Gateway
-├── DEMO_MANUAL.md        # Step-by-step Presentation Guide
-├── README.md             # Project Documentation
-└── vite.config.ts        # Build Pipeline
+│   ├── pages/                   # Role-Based UI Views
+│   │   ├── LoginPage.tsx        # Multi-role Entry Point
+│   │   ├── PatientDashboard.tsx # Data Ownership & Permission Control
+│   │   ├── DoctorDashboard.tsx  # Patient Repository & Clinical Viewer
+│   │   └── HospitalDashboard.tsx # Data Submission & Ledger Indexing
+│   ├── components/              # UI Architecture
+│   │   ├── DemoGuide.tsx        # Tutorial Walkthrough
+│   │   └── NotificationCenter.tsx # Real-time Ledger Events
+│   ├── lib/                     # System Utilities
+│   │   └── stellar.ts           # Soroban & Horizon Logic
+│   ├── App.tsx                  # Routing Orchestration
+│   ├── types.ts                 # Unified Interfaces
+│   └── main.tsx                 # Entry Point
+├── server.ts                    # Backend API & Prototype Store
+├── contracts/                   # Soroban Smart Contracts (Rust)
+├── README.md                    # Project Documentation
+└── package.json                 # Dependencies
 ```
 
 ---
 
 ## 🚀 Getting Started
-### Prerequisites
-* Node.js v18 or higher
-* NPM or Yarn
-* A web browser with modern JS support
 
-### Installation
+### 📋 Prerequisites
+* **Node.js**: v18.x or higher
+* **Wallet**: [Freighter Wallet](https://www.freighter.app/) (Recommended for Soroban interactions)
+* **Browser**: Chrome/Edge/Brave for extension support
+
+### 🛠️ Installation
 1. **Clone the Project**
    ```bash
-   git clone <your-repo-link>
-   cd mediledger-vault
+   git clone https://github.com/your-username/mediledger-stellar-vault.git
+   cd mediledger-stellar-vault
    ```
 2. **Install Dependencies**
    ```bash
    npm install
    ```
+3. **Set Environment Variables**
+   Create a `.env` file for your Stellar Secret Keys:
+   ```bash
+   cp .env.example .env
+   ```
 
-### Running the Application
+### 🛰️ Running the Application
 ```bash
 npm run dev
 ```
@@ -71,58 +121,94 @@ Open [http://localhost:3000](http://localhost:3000) to access the integrated por
 ---
 
 ## 📋 Features
+
 ### Phase 1: Clinical Vault (Current)
 * **Encryption on Submission**: All bio-data is encrypted client-side.
-* **Relational Anchoring**: Links records to Patient Wallet IDs.
-* **Audit Ledger**: Real-time tracking of data usage.
+* **Soroban Anchoring**: Links record hashes to Patient Public Keys on-chain.
+* **Fine-Grained Permissions**: Time-bound access grants for specific clinical categories.
 
-### Phase 2: Interoperability (Upcoming)
-* **Multi-Chain Bridge**: Support for cross-chain verification.
-* **AI Diagnostic Tipping**: Automated analysis for authorized doctors.
+### Phase 2: Interoperability & Scaling
+* **Multi-Chain Bridge**: Support for Ethereum/Polygon verification.
+* **AI Diagnostics**: Automated analysis for authorized doctors.
+* **Mobile App**: Dedicated Android/iOS vault app.
+* **Consent Revocation**: Instant recursive permission revocation via Soroban smart contracts.
 
 ---
 
 ## 🔐 Patient ID & Record Format
 To maintain privacy, all records follow a standardized, secure format:
 * **Patient Key**: `VAULT-XXXX-XXXX` (Derived from Public Key)
-* **Record Hash**: SHA-256 anchor of encrypted contents.
-* **Permission Token**: Time-bound access grants stored on-chain.
+* **Record Hash**: SHA-256 anchor of encrypted contents stored on Stellar.
+* **Permission Token**: Signed grant stored in the Soroban ACL.
+
+---
+
+## 📺 Project Demonstration
+Below is an execution overview of the MediLedger system in action.
+
+**[🚀 PROTOTYPE DEPLOYMENT](https://ais-pre-cn4cjnmphzobfxbao4mldi-235614555006.asia-southeast1.run.app)**
+
+### Full System Walkthrough
+![System Demo](https://raw.githubusercontent.com/Rrp14/certificate_issuance_and_verification/main/media/demo.gif)
+> *Note: Record your screen using a tool like OBS or Loom, save it as a GIF, and replace this placeholder link.*
 
 ---
 
 ## 📊 Data Storage
-### On-Chain (Stellar Blockchain)
-* Record Integrity Hashes (Verification)
-* Access Control Lists (ACL)
-* Permission Tokens
-* Audit Signatures
 
-### Off-Chain (Decentralized Storage)
+### On-Chain (Stellar Blockchain)
+* **Soroban Smart Contract**: Stores Access Control Lists (ACL).
+* **Anchors**: Immutable record hashes and IPFS-style URIs.
+* **Audit Logs**: Cryptographic signatures of access events.
+
+### Off-Chain (Prototype Store)
 * Encrypted Medical Documentation (EHR)
-* Laboratory Images (Radiology/Ultrasound)
-* Detailed Patient History
+* Detailed Clinical History
+* User Profiles
+
+---
+
+## ⛓️ Smart Contract Integration
+The core business logic is defined on-chain in **Rust** using the **Soroban SDK**.
+
+### Smart Contract Functions
+* `anchor_record`: Registers a record's unique hash and URI.
+* `update_permission`: Modifies the ACL based on patient intent.
+* `has_access`: Verifies authorization before granting data views.
+
+### Contract Technicals
+* **Language**: Rust
+* **Location**: `/contracts/mediledger/src/lib.rs`
 
 ---
 
 ## 🔒 Security Features
-* **End-to-End Encryption**: Data is unreadable by the platform/host.
-* **Wallet Normalization**: Strict casing enforcement for Public Keys to prevent spoofing.
-* **Verification Gate**: Integrated checksum validation for every viewed file.
+* **End-to-End Encryption**: Data is unreadable by the platform host.
+* **Wallet Normalization**: Strict casing enforcement to prevent spoofing.
+* **Zero-Trust Access**: No data is served without on-chain verification.
 
 ---
 
 ## 🛠️ Development
-### API Endpoints (Development)
-* `GET /api/health`: System status check.
-* `POST /api/ledger/anchor`: Write a new integrity hash to the simulated ledger.
-* `POST /api/vault/access`: Validate permissions and retrieve encrypted payload.
+
+### API Endpoints
+* `GET /api/health`: System health status.
+* `POST /api/ledger/anchor`: Write to the simulation ledger.
+* `POST /api/permissions`: Sync off-chain permissions.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
 
 ---
 
 ## 👥 Contributors
-* **Project Lead**: [Your Name/Team]
-* **Environment**: Developed in Google AI Studio Build
+* **Project Lead**: [Vidyashree](https://github.com/Vidyashree)
+* **Email**: [vidyashree7975252@gmail.com](mailto:vidyashree7975252@gmail.com)
+* **Environment**: Developed in Google AI Studio Build environment.
 
 ---
+
 ## 📞 Support
-For project inquiries or technical support, please contact the repository owner via GitHub Issues.
+For support, please contact the development team at [support@mediledger.io].

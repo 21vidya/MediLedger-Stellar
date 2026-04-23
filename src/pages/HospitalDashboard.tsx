@@ -85,7 +85,7 @@ export default function HospitalDashboard({ user }: { user: UserType }) {
       
       // 3.5 Anchor to Soroban
       try {
-        await StellarService.anchorRecordHash(patientAddress, cid, dataHash);
+        await StellarService.anchorRecord(user.address, patientAddress, title, dataHash, cid);
       } catch (sorobanErr) {
         console.warn('Soroban anchoring failed, proceeding with off-chain sync:', sorobanErr);
         // We continue in the prototype to ensure the backend sync works, 

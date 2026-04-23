@@ -100,7 +100,7 @@ export default function PatientDashboard({ user }: { user: User }) {
     try {
       // 1. Anchor permission to Soroban Smart Contract
       try {
-        await StellarService.grantAccess(doctorAddress, category, expiry.getTime());
+        await StellarService.updatePermission(user.address, doctorAddress, true, expiry.getTime());
       } catch (sorobanErr) {
         console.warn('Soroban permission anchoring failed, proceeding with off-chain sync:', sorobanErr);
       }
