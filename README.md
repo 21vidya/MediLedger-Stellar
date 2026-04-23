@@ -96,26 +96,40 @@ The repository is organized to separate concerns between medical data handling, 
 * **Wallet**: [Freighter Wallet](https://www.freighter.app/) (Recommended for Soroban interactions)
 * **Browser**: Chrome/Edge/Brave for extension support
 
+<<<<<<< HEAD
 ### 🛠️ Installation & Local Setup (Cloning)
 To run this project locally, follow these steps:
 
 1. **Clone the Repository**
+=======
+### 🛠️ Installation
+1. **Clone the Project**
+>>>>>>> e89a238ed4b19e69d8e955555ec3adde3ec2e808
    ```bash
    git clone https://github.com/your-username/mediledger-stellar-vault.git
    cd mediledger-stellar-vault
    ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> e89a238ed4b19e69d8e955555ec3adde3ec2e808
 2. **Install Dependencies**
    ```bash
    npm install
    ```
+<<<<<<< HEAD
 
 3. **Set Environment Variables**
    Create a `.env` file for your Stellar configuration:
+=======
+3. **Set Environment Variables**
+   Create a `.env` file for your Stellar Secret Keys:
+>>>>>>> e89a238ed4b19e69d8e955555ec3adde3ec2e808
    ```bash
    cp .env.example .env
    ```
 
+<<<<<<< HEAD
 4. **Run Development Server**
    ```bash
    npm run dev
@@ -129,22 +143,30 @@ If you have exported this project and wish to push it to your own repository (e.
 
 ```bash
 # Navigate to the project directory
-cd mediledger-stellar-vault
+# Navigate to the project directory
+cd MediLedger-Stellar
 
 # Initialize git (if not already)
 git init
 
 # Remove existing origin and add your new repository
 git remote remove origin
-git remote add origin https://github.com/yourusername/Decentralised-DNS.git
+git remote add origin https://github.com/21vidya/MediLedger-Stellar.git
 
 # Stage and commit changes
 git add .
-git commit -m "Initial commit: Decentralized Record Vault"
+git commit -m "Initial commit: MediLedger"
 
 # Push to your repository
 git push -u origin main
 ```
+=======
+### 🛰️ Running the Application
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to access the integrated portal.
+>>>>>>> e89a238ed4b19e69d8e955555ec3adde3ec2e808
 
 ---
 
