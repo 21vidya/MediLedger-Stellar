@@ -1,0 +1,6 @@
+{
+  "name": "MediLedger",
+  "description": "A decentralized medical record management system with fine-grained access control on the Stellar network.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
