@@ -201,12 +201,6 @@ The core business logic is defined on-chain in **Rust** using the **Soroban SDK*
 ## 📄 License
 This project is licensed under the MIT License.
 
----
-
-## 👥 Contributors
-* **Project Lead**: [Vidyashree](https://github.com/Vidyashree)
-* **Email**: [vidyashree7975252@gmail.com](mailto:vidyashree7975252@gmail.com)
-* **Environment**: Developed in Google AI Studio Build environment.
 
 ---
 
